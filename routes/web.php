@@ -22,14 +22,13 @@ use App\Http\Controllers\ShopController;
 
 
 use App\Http\Controllers\BlogController;
-<<<<<<< HEAD
+
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CityController;
 use Illuminate\Support\Facades\Cookie;
 
-=======
->>>>>>> 9567bff15f0db99f6408af068a59f4bdbf5001b1
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -46,7 +45,7 @@ Route::group(['middleware' => ['checkuser']], function () {
         return view('client.home');
     })->name('home');
 
-<<<<<<< HEAD
+
     Route::get('/shop', [ShopController::class, 'index']);
     Route::get('/category/{slug}', [ShopController::class, 'pro_cate'])->name('all.productscate');
     # products
@@ -127,8 +126,7 @@ Route::group(['middleware' => ['checkuser']], function () {
 Route::get('social/google', [GoogleController::class, 'redirect']);
 Route::get('social/google/callback', [GoogleController::class, 'googleCallback']);
 
-=======
->>>>>>> 9567bff15f0db99f6408af068a59f4bdbf5001b1
+
 Route::middleware('checkadmin')->group(function () {
     Route::prefix('admin')->name('admin.')->group(
         function () {
@@ -238,8 +236,7 @@ Route::get('/vnpay/check', [CheckoutController::class, 'checkPayVNPAY'])->name('
 
 
 
-<<<<<<< HEAD
-=======
+
 
 
 
@@ -309,5 +306,5 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
->>>>>>> 9567bff15f0db99f6408af068a59f4bdbf5001b1
+
 require __DIR__ . '/auth.php';
