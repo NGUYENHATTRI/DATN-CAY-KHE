@@ -10,7 +10,11 @@ use App\Models\Variant_images;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
+<<<<<<< HEAD
 use Illuminate\Support\Facades\Request as FacadesRequest;
+=======
+
+>>>>>>> 9567bff15f0db99f6408af068a59f4bdbf5001b1
 
 class ShopController extends Controller
 {
@@ -126,5 +130,18 @@ class ShopController extends Controller
         }
         $categories = Category::all();
         return view('client.category', ['products' => $products, 'categories' => $categories,'category'=>$category]);
+    }
+    public function pro_cate($idloai)
+    {
+        $perpage= 9;
+        $products = Product::where('category_id',$idloai)->paginate($perpage);
+        foreach($products as $product){ 
+            $variant = Variant::where('product_id', $product->productID)->first();
+            $product->image_url = Variant_images::where('variant_id' , $variant->variantID)->value('image_url');
+            
+            $product->price = $variant->price;
+        };
+        $categories = Category::get();
+        return view('client.shop',['products'=>$products,'categories'=>$categories]);
     }
 }

@@ -40,6 +40,112 @@
     </div>
     <!-- End Hero Section -->
 
+<<<<<<< HEAD
+=======
+		<div class="untree_co-section product-section before-footer-section">
+		    <div class="container">
+				<div class="row">
+					<div class=" col-md-4 desktop">
+						<sidebar class="sidebar__filter-wrapper">
+							<ul>
+								<div class="sidebar__filter">
+									<h2 class="sidebar__heading">Lọc theo giá</h2>
+									<div class="range-slider-container" >
+										<input type="range" class="range-slider" />
+										<span id="range-value-bar"></span>
+										<span id="range-value">0</span>
+									</div>
+									<div class="spw">
+										<span class="sidebar__span">Giá: $7 - $56</span>
+										<button class="button_shop button-filter">TÌM</button>
+									</div>
+								</div>
+							</ul>	
+	
+							<ul class="sidebar__category">
+								<h2 class="sidebar__heading">Danh mục sản phẩm</h2>
+							
+									<li class="sidebar__category-item">
+										<div class="sidebar__category-link">
+										@php foreach($categories as $cate) { @endphp
+											<a href="/{{$cate->catergoryID}}">{{$cate->name}} </a><hr style="width: 85%;">	
+										@php } @endphp
+										</div>
+									</li>
+								
+							</ul>
+	
+							<ul class="sidebar__tags" >
+								<h2 class="sidebar__heading">TAGS</h2>
+								<li class="sidebar__tag-item"><a href="" class="sidebar__tag-link">Bình thường</a></li>
+								<li class="sidebar__tag-item"><a href="" class="sidebar__tag-link">Cổ điển</a></li>
+								<li class="sidebar__tag-item"><a href="" class="sidebar__tag-link">Sáng tạo</a></li>
+								<li class="sidebar__tag-item"><a href="" class="sidebar__tag-link">Đồ gốm</a></li>
+								<li class="sidebar__tag-item"><a href="" class="sidebar__tag-link">Thẩm mỹ</a></li>
+								<li class="sidebar__tag-item"><a href="" class="sidebar__tag-link">Hằng ngày</a></li>
+								<li class="sidebar__tag-item"><a href="" class="sidebar__tag-link">Sành điệu</a></li>
+								<li class="sidebar__tag-item"><a href="" class="sidebar__tag-link">Trang trí</a></li>
+								<li class="sidebar__tag-item"><a href="" class="sidebar__tag-link">Kiểu mới</a></li>
+								<li class="sidebar__tag-item"><a href="" class="sidebar__tag-link">Thời thượng</a></li>
+							</ul>
+							<ul class="sidebar__tags" >
+								<h2 class="sidebar__heading">Sản phẩm nối bật</h2>
+								
+								<div class="sidebar__tag-item info-prod-div row" >
+									<div class="col" href="" class="image-info-prod">
+										<img src="images/product-1.png" alt="" class="image-info">
+									</div>
+									<div class="info-prod col">
+										<div class="name-info">
+											<span>Pok Classicle</span>
+										</div>
+										<div class="star">
+											<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+										</div>
+										<div class="price-info">
+											<span>$</span><span>34.00</span>
+										</div>
+									</div>
+									
+								</div><div class="sidebar__tag-item info-prod-div row" >
+									<div class="col" href="" class="image-info-prod">
+										<img src="images/product-1.png" alt="" class="image-info">
+									</div>
+									<div class="info-prod col">
+										<div class="name-info">
+											<span>Pok Classicle</span>
+										</div>
+										<div class="star">
+											<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+										</div>
+										<div class="price-info">
+											<span>$</span><span>34.00</span>
+										</div>
+									</div>
+									
+								</div>
+								<div class="sidebar__tag-item info-prod-div row" >
+									<div class="col" href="" class="image-info-prod">
+										<img src="images/product-1.png" alt="" class="image-info">
+									</div>
+									<div class="info-prod col">
+										<div class="name-info">
+											<span>Pok Classicle</span>
+										</div>
+										<div class="star">
+											<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+										</div>
+										<div class="price-info">
+											<span>$</span><span>34.00</span>
+										</div>
+									</div>
+									
+								</div>
+							</ul>
+							
+						</sidebar>
+					</div>
+>>>>>>> 9567bff15f0db99f6408af068a59f4bdbf5001b1
 
 
     <div class="untree_co-section product-section before-footer-section">

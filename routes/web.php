@@ -4,7 +4,7 @@ use App\Http\Controllers\Admin\ArticleController as ArticleAdminController;
 use App\Http\Controllers\Admin\BlogController as BlogAdminController;
 use App\Http\Controllers\Admin\CategoryController as CategoryAdminController;
 use App\Http\Controllers\Admin\CommentController as CommentAdminController;
-use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Controllers\Admin\CustomerController as AdminUserController;
 use App\Http\Controllers\Admin\HomeController as HomeAdminController;
 use App\Http\Controllers\Admin\OrderController as OrderAdminController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
@@ -22,11 +22,14 @@ use App\Http\Controllers\ShopController;
 
 
 use App\Http\Controllers\BlogController;
+<<<<<<< HEAD
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CityController;
 use Illuminate\Support\Facades\Cookie;
 
+=======
+>>>>>>> 9567bff15f0db99f6408af068a59f4bdbf5001b1
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -43,6 +46,7 @@ Route::group(['middleware' => ['checkuser']], function () {
         return view('client.home');
     })->name('home');
 
+<<<<<<< HEAD
     Route::get('/shop', [ShopController::class, 'index']);
     Route::get('/category/{slug}', [ShopController::class, 'pro_cate'])->name('all.productscate');
     # products
@@ -123,6 +127,8 @@ Route::group(['middleware' => ['checkuser']], function () {
 Route::get('social/google', [GoogleController::class, 'redirect']);
 Route::get('social/google/callback', [GoogleController::class, 'googleCallback']);
 
+=======
+>>>>>>> 9567bff15f0db99f6408af068a59f4bdbf5001b1
 Route::middleware('checkadmin')->group(function () {
     Route::prefix('admin')->name('admin.')->group(
         function () {
@@ -232,4 +238,76 @@ Route::get('/vnpay/check', [CheckoutController::class, 'checkPayVNPAY'])->name('
 
 
 
+<<<<<<< HEAD
+=======
+
+
+
+
+
+
+Route::get('/shop', [ShopController::class, 'index']);
+Route::get('/{idloai}',[ShopController::class,'pro_cate'])->name('all.productscate');
+
+
+Route::get('/detail', function () {
+    return view('client.detail');
+});
+
+Route::get('/variant/{variantID}', [ProductController::class, 'getVariant']);
+
+Route::get('/detail_blog', function () {
+    return view('client.detail_blog');
+});
+
+Route::get('/blog_detail/{id}', function () {
+    return view('client.blog_detail');
+});
+
+Route::get('/detail/{id}', [ProductController::class, 'detail']);
+Route::get('/themvaogio/{idsp}/{soluong}', [ProductController::class, 'themvaogio']);
+Route::get('/hiengiohang', [ProductController::class, 'hiengiohang']);
+Route::get('/xoasptronggio/{idsp}', [ProductController::class, 'xoasptronggio']);
+Route::get('/xoagiohang', [ProductController::class, 'xoagiohang']);
+
+Route::get('/about', function () {
+    return view('client.about');
+});
+
+Route::get('/blog', function () {
+    return view('client.blog');
+});
+
+Route::get('/services', function () {
+    return view('client.services');
+});
+
+Route::get('/user', function () {
+    if (!\Illuminate\Support\Facades\Auth::user()) {
+        return redirect('/login');
+    }
+    return view('client.user_profile');
+});
+
+Route::get('/cart', function () {
+    return view('client.cart');
+});
+
+Route::post('/change-info', [UserController::class, 'edit']);
+
+Route::get('social/google', [GoogleController::class, 'redirect']);
+
+Route::get('social/google/callback', [GoogleController::class, 'googleCallback']);
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+>>>>>>> 9567bff15f0db99f6408af068a59f4bdbf5001b1
 require __DIR__ . '/auth.php';
