@@ -15,7 +15,7 @@ class CheckAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::user()->role != 0){
+        if (Auth::user()->role == 10){
             return $next($request);
         }
         return redirect('/');

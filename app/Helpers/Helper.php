@@ -28,7 +28,7 @@ class Helper
 
         switch ($modelType) {
             case 'category':
-                $model = Category::where('catergoryID', $id)->value('name');
+                $model = Category::where('id', $id)->value('name');
                 break;
 
             case 'size':

@@ -4,7 +4,7 @@
     <!-- Page Header -->
     <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
         <div>
-            <h4 class="mb-0">Xin chào, {{ auth()->user()->name }}</h4>
+            
             <p class="mb-0 text-muted">Thống kê website!</p>
         </div>
     </div>

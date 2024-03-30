@@ -18,6 +18,6 @@ class CheckAuth
         if (Auth::check()) {
             return $next($request);
         }
-        return redirect('/login');
+        return redirect('/login')->with('warning','Vui lòng đăng nhập để dùng chức năng này!');
     }
 }

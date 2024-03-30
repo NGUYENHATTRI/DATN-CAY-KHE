@@ -59,9 +59,9 @@
 
 
     <!-- Loader -->
-    <div id="loader">
+    {{-- <div id="loader">
         <img src="{{ asset('assets/admin/images/media/loader.svg') }}" alt="">
-    </div>
+    </div> --}}
     <!-- Loader -->
 
     <div class="page">

@@ -21,13 +21,19 @@ class User extends Authenticatable
     protected $primaryKey = 'userID';
     public $timestamps = false;
     protected $fillable = [
+        'userID',
         'name',
         'email',
         'password',
         'image_url',
+        'province_id',
+        'district_id',
+        'ward_id',
+        'google_token',
+        'google_refresh_token',
+        'role',
+        'phone',
         'address',
-        'google_id',
-        'role'
     ];
 
     /**

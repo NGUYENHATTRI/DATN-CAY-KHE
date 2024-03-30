@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\PostModel;
-use App\Models\EmployeeModel;
+use App\Models\User;
 
 
 use Illuminate\Http\Request;
@@ -20,7 +20,7 @@ class BlogController extends Controller
     public function create()
     {
         $title = 'Thêm bài viết';
-        $admins = EmployeeModel::all();
+        $admins = User::all();
         $posts = PostModel::all();
         return view('admin.blog.create', compact('admins', 'posts','title'));
     }
@@ -37,7 +37,7 @@ class BlogController extends Controller
     public function edit($postID)
     {
         $title = 'Chỉnh sửa bài viết';
-        $admins = EmployeeModel::all();
+        $admins =  User::all();
         $post = PostModel::find($postID);
         return view('admin.blog.edit', compact('admins','post','title'));
     }

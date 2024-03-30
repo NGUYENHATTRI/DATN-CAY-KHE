@@ -17,4 +17,19 @@ class Product extends Model
         'category_id',
     ];
     public $timestamps =false;
+
+    public function carts()
+    {
+        return $this->hasMany(Cart::class);
+    }
+    public function variations()
+    {
+        return $this->hasMany(Variant::class, 'product_id');
+    }
+    public function scopeSlug($query, $value)
+    {
+        return $query->where('slug', $value);
+    }
+    
+
 }

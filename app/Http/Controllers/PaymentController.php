@@ -117,7 +117,7 @@ class PaymentController extends Controller
         $secureHash = hash_hmac('sha512', $hashData, $this->hash_secret);
         $vnpTranId = $inputData['vnp_TransactionNo'];
         $vnp_BankCode = $inputData['vnp_BankCode'];
-        $vnp_Amount = $inputData['vnp_Amount']/100; // Số tiền thanh toán VNPAY phản hồi
+        $vnp_Amount = $inputData['vnp_Amount'] / 100; // Số tiền thanh toán VNPAY phản hồi
         $Status = 0;
         $orderId = $inputData['vnp_TxnRef'];
 
@@ -220,7 +220,6 @@ class PaymentController extends Controller
             } else {
                 // Voucher không tồn tại
                 echo 'Voucher không tồn tại';
-
             }
         } else {
             // Nếu không có voucher, kiểm tra giá của giỏ hàng có bằng tổng giá sản phẩm không
@@ -245,7 +244,10 @@ class PaymentController extends Controller
         if (Session::has('voucher')) {
             Session::forget('voucher');
         }
-        $voucher = $request->input('voucher');
+        // $voucher = $request->input('voucher');
+        if (getCoupon() != '') {
+            $voucher = getCoupon();
+        }
         if ($voucher) {
             session()->put('voucher', $voucher);
         }
@@ -321,7 +323,6 @@ class PaymentController extends Controller
                     // Lỗi trong quá trình update Order
                 }
             }
-
         } else {
             // Lỗi phát sinh. Hoá đơn chưa được tạo
         }
