@@ -4,7 +4,7 @@
 
         <!-- Name -->
         <div>
-            <x-input-label for="name" :value="__('Họ và tên')" />
+            <x-input-label for="name" :value="__('Tên đăng nhập')" />
             <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
@@ -30,7 +30,7 @@
 
         <!-- Confirm Password -->
         <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Xác nhận mật khẩu')" />
+            <x-input-label for="password_confirmation" :value="__('Xác nhận lại mật khẩu')" />
 
             <x-text-input id="password_confirmation" class="block mt-1 w-full"
                             type="password"

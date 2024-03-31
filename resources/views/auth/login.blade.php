@@ -8,8 +8,7 @@
         <!-- Email Address -->
         <div>
             <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required
-                autofocus autocomplete="username" />
+            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
@@ -17,42 +16,43 @@
         <div class="mt-4">
             <x-input-label for="password" :value="__('Mật khẩu')" />
 
-            <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required
-                autocomplete="current-password" />
+            <x-text-input id="password" class="block mt-1 w-full"
+                            type="password"
+                            name="password"
+                            required autocomplete="current-password" />
 
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
         <!-- Remember Me -->
         <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox"
-                    class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                <span class="ms-2 text-sm text-gray-600">{{ __('Nhớ tài khoản') }}</span>
-            </label>
+            <!-- <label for="remember_me" class="inline-flex items-center">
+                <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
+                <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+            </label> -->
+            <a href="/forgot-password" class="" style="text-color: pink;">
+                Quên mật khẩu ?
+            </a>
         </div>
 
-        <div class="flex items-center justify-end mt-4">
+        <div class="flex items-center mt-4">
             <!-- @if (Route::has('password.request'))
-<a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
+                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
                     {{ __('Forgot your password?') }}
                 </a>
-@endif -->
+            @endif -->
             <a href="/social/google">
-                <img src="https://developers.google.com/identity/images/btn_google_signin_dark_normal_web.png"
-                    style="margin-left: 3em;height: 40px;border-radius: 12px">
+                <img src="https://developers.google.com/identity/images/btn_google_signin_dark_normal_web.png" style="margin-left: 3em;height: 40px;border-radius: 12px">
             </a>
             <x-primary-button class="ms-3">
                 {{ __('Đăng nhập') }}
             </x-primary-button>
-
-
         </div>
-        <div class="w-100 flex justify-center mt-3">
-            <a href="{{ route('register') }}"
-                class="px-4 py-2 text-center bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">Đăng
-                ký tài khoản</a>
-        </div>
-
     </form>
+    <div class="text-center mt-4">
+        Bạn mới đến YG? 
+        <a href="/register" class="ms-3" style="text-color: pink;">
+            Đăng ký
+        </a>
+    </div>
 </x-guest-layout>
