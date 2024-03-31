@@ -10,11 +10,12 @@ use App\Models\Product;
 use App\Models\Variant;
 use App\Models\Variant_images;
 use App\Models\Category;
+use App\Models\MaterialModel;
 use Illuminate\Support\Facades\Log;
 
 class ProductController extends Controller
 {
-    // //
+    // //MaterialModel
     // function shop(){
     //     $perpage= 9;
     //     $products = Product::paginate($perpage);
@@ -37,12 +38,29 @@ class ProductController extends Controller
             }
 
             $productVariant  = $product->variations()->pluck('product_id');
+            $variants = Variant::where('product_id', $product->productID)->get();
 
+            
+            $materials = \DB::table('material')
+                    ->join('variant', 'material.materialID', '=', 'variant.material_id')
+                    ->where('variant.product_id', $product->productID)
+                    ->select('material.materialID', 'material.name')
+                    ->distinct()
+                    ->get();
+
+            $sizes = \DB::table('size')
+                    ->join('variant', 'size.sizeID', '=', 'variant.size_id')
+                    ->where('variant.product_id', $product->productID)
+                    ->select('size.sizeID', 'size.name')
+                    ->distinct()
+                    ->get();
+
+            // $materials = \DB::table('j')
             // $productIdsWithTheseVariant = Variant::whereIn('product_id', $productVariant->product_id)
             // ->where('product_id', '!=', $product->productID)->pluck('product_id');
 
             // $relatedProducts = Product::whereIn('id', $productIdsWithTheseVariant)->get();
-            return view('client.products.show', ['product' => $product]);
+            return view('client.products.show', ['product' => $product, 'variants' => $variants, 'materials' => $materials, 'sizes' => $sizes]);
         // } catch (\Throwable $e) {
         //     dd($e);
         //     abort(404);

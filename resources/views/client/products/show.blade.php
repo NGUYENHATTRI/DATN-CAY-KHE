@@ -44,4 +44,30 @@
             </div>
     </section>
     <!--product details end-->
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        
+        let variantID = $('.variant').find('input[type="radio"]:checked').val();
+        let materialID = $('.material').find('input[type="radio"]:checked').val();
+        let sizeID = $('.size').find('input[type="radio"]:checked').val();
+        function getSize(e){
+            let ele = $(e);
+            sizeID = ele.val();
+        }
+
+        function getMaterial(e){
+            let ele = $(e);
+            materialID = ele.val();
+        }
+
+        function getVariant(e){
+            let ele = $(e);
+            variantID = ele.val();
+        }
+
+        $(document).ready(function() {
+
+        });
+    </script>
 @endsection

@@ -50,12 +50,47 @@
                         @if (!$isVariantProduct) value="{{ $product->variations[0]->variantID }}" @endif>
 
                     <!-- variations -->
-                    <div class="d-flex">
-                        @include('client.partials.products.variations', compact('product'))
-                    </div>
+                    Mẫu
+                        <div class="d-flex">
+                            <ul
+                                class=" product-radio-btn mt-1 mb-3 d-flex align-items-center gap-2 variant">
+                                @foreach($variants as $variant)
+                                <li>
+                                    <input type="radio" name="variant"
+                                        value="{{$variant->variantID}}" id="val-variant-{{$variant->variantID}}" onclick="getVariant(this)"  @if ($loop->first) checked @endif>
+                                    <label for="val-{{$variant->variantID}}">{{ $variant->color }}</label>
+                                </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    Loại
+                        <div class="d-flex">
+                            <ul
+                                class=" product-radio-btn mt-1 mb-3 d-flex align-items-center gap-2 material ">
+                                @foreach($materials as $material)
+                                <li>
+                                    <input type="radio" name="material"
+                                        value="{{$material->materialID}}" id="val-material-{{$material->materialID}}" onclick="getMaterial(this)"  @if ($loop->first) checked @endif>
+                                    <label for="val-{{$material->materialID}}">{{ $material->name }}</label>
+                                </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    Kích thước
+                        <div class="d-flex">
+                            <ul
+                                class=" product-radio-btn mt-1 mb-3 d-flex align-items-center gap-2 size ">
+                                @foreach($sizes as $size)
+                                <li>
+                                    <input type="radio" name="size"
+                                        value="{{$size->sizeID}}" id="val-size-{{$size->sizeID}}" onclick="getSize(this)"  @if ($loop->first) checked @endif>
+                                    <label for="val-{{$size->sizeID}}">{{ $size->name }}</label>
+                                </li>
+                                @endforeach
+                            </ul>
+                        </div>
 
                     <!-- variations -->
-
                     <div class="d-flex align-items-center gap-3 flex-wrap mt-5">
                         <div class="product-qty qty-increase-decrease d-flex align-items-center">
                             <button type="button" class="decrease">-</button>
