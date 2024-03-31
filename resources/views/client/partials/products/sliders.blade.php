@@ -16,7 +16,7 @@
                 </div>
             @empty
                 <div class="swiper-slide text-center">
-                    <img src="{{ noImage() }}" loading="lazy" alt="No Image" class="img-fluid">
+                    <img src="{{  asset('images/shop/' . $variants[0]->image_url )  }}" loading="lazy" alt="No Image" class="img-fluid" id="productImage">
                 </div>
             @endforelse
         </div>

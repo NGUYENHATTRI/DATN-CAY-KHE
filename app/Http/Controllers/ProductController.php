@@ -79,17 +79,6 @@ class ProductController extends Controller
         return new ProductVariationInfoResource($productVariation);
     }
 
-    function getVariant($variantID)
-    {
-        $variant = Variant::where('variantID', $variantID)->first();
-        $variantImages = Variant_images::where('variant_id', $variantID)->get();
-
-        $data = [
-            'variant' => $variant,
-            'variantImages' => $variantImages
-        ];
-        return response()->json($data);
-    }
 
     function addCart(Request $request, $productID = 0, $soluong = 1, $variantID)
     {
@@ -168,4 +157,25 @@ class ProductController extends Controller
         };
         return response()->json($products);
     }
+
+    function getVariant($variantID, $materialID, $sizeID){
+        $variant = Variant::where('variantID', $variantID)
+                          ->where('material_id', $materialID)
+                          ->where('size_id', $sizeID)
+                          ->first();
+        
+        if (!$variant) {
+            return response()->json(['error' => 'Variant not found'], 404);
+        }
+    
+        $variantImages = Variant_images::where('variant_id', $variant->variantID)->get();
+    
+        $data = [
+            'variant' => $variant,
+            'variantImages' => $variantImages
+        ];
+    
+        return response()->json($data);
+    }
+    
 }

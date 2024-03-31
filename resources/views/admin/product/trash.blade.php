@@ -8,11 +8,11 @@
 <x-notify::notify />
     <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
         <div class="my-auto">
-            <h5 class="page-title fs-21 mb-1">Danh sách sản phẩm</h5>
+            <h5 class="page-title fs-21 mb-1">Thùng rác sản phẩm</h5>
             <nav>
                 <ol class="breadcrumb mb-0">
                     <li class="breadcrumb-item"><a href="javascript:void(0);">Sản phẩm</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Danh sách sản phẩm</li>
+                    <li class="breadcrumb-item active" aria-current="page">Thùng rác sản phẩm</li>
                 </ol>
             </nav>
         </div>
@@ -23,21 +23,16 @@
 
                 <div class="card-header">
                     <div class="card-title">
-                        Danh sách sản phẩm
+                        Thùng rác sản phẩm
                     </div>
                 </div>
 
                 <div class="card-body">
 
                     <table id="responsiveDataTable" class="table table-bordered text-nowrap w-100">
-                        <a href="{{ route('admin.createProduct') }}">
-                            <button class="btn btn-primary">Thêm sản phẩm</button>
+                        <a href="{{ route('admin.product') }}">
+                            <button class="btn btn-primary">trở lại</button>
                         </a>
-                        <a href="{{ route('admin.trashProduct') }}">
-                            <button class="btn btn-primary">Thùng rác</button>
-                        </a>
-                        
-
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -61,10 +56,10 @@
 
                                     <td>
                                         <div>
-                                            <a href="{{ route('admin.editProduct') }}/{{ $row->productID }}">
+                                            <a href="{{ route('admin.restoreProduct') }}/{{ $row->productID }}">
                                                 <i class="fa fa-edit me-2 font-success"></i>
                                             </a>
-                                            <a href="{{ route('admin.deleteProduct') }}/{{ $row->productID }}">
+                                            <a href="{{ route('admin.forceDeleteProduct') }}/{{ $row->productID }}">
                                                 <i class="fa fa-trash font-danger"></i>
                                             </a>
                                         </div>

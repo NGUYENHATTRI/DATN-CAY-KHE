@@ -131,11 +131,14 @@ Route::middleware('checkadmin')->group(function () {
             Route::prefix('product')->group(
                 function () {
                     Route::get('/', [AdminProductController::class, 'index'])->name('product');
-                    Route::get('add', [AdminProductController::class, 'index'])->name('addProduct');
-                    Route::post('add', [AdminProductController::class, 'index'])->name('postAddProduct');
-                    Route::get('edit/{id?}', [AdminProductController::class, 'index'])->name('editProduct')->where(['id' => '[0-9]+']);
-                    Route::put('edit', [AdminProductController::class, 'index'])->name('postEditProduct');
-                    Route::get('delete/{id?}', [AdminProductController::class, 'index'])->name('deleteProduct')->where(['id' => '[0-9]+']);
+                    Route::get('create/', [AdminProductController::class, 'create'])->name('createProduct');
+                    Route::post('create/', [AdminProductController::class, 'create_'])->name('createProduct_');
+                    Route::get('edit/{id?}', [AdminProductController::class, 'edit'])->name('editProduct')->where(['id' => '[0-9]+']);
+                    Route::post('edit', [AdminProductController::class, 'edit_'])->name('editProduct_');
+                    Route::get('delete/{id?}', [AdminProductController::class, 'delete'])->name('deleteProduct')->where(['id' => '[0-9]+']);
+                    Route::get('trash', [AdminProductController::class, 'showTrash'])->name('trashProduct');
+                    Route::get('restore/{id?}', [AdminProductController::class, 'restore'])->name('restoreProduct');
+                    Route::get('forceDelete/{id?}', [AdminProductController::class, 'forceDelete'])->name('forceDeleteProduct');
                 }
             );
             Route::prefix('variant')->group(

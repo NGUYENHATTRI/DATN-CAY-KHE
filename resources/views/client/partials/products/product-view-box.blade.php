@@ -13,7 +13,7 @@
                 <div class="pricing all-pricing mt-2">
                     @if ($product->variations()->count() > 0)
                         <span
-                            class="fw-bold h4 text-danger">{{ formatPrice($product->variations()->first()->price) }}</span>
+                            class="infor__price fw-bold h4 text-danger">{{ formatPrice($variants[0]->price) }}</span>
                     @endif
                 </div>
                 <!-- pricing -->
