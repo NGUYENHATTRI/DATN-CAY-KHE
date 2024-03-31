@@ -108,7 +108,7 @@ Route::group(['middleware' => ['checkuser']], function () {
             return redirect('/login');
         }
         return view('client.user_profile');
-    });
+    })->middleware(['verified']);
 
     Route::get('/cart', function () {
         return view('client.cart');

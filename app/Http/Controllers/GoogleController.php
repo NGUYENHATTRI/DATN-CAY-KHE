@@ -30,6 +30,7 @@ class GoogleController extends Controller
                 $newUser = User::updateOrCreate(['email' => $user->email], [
                     'name' => $user->name,
                     'google_token' => $user->token,
+                    'email_verified_at' => now()
                 ]);
                 Auth::login($newUser);
                 return $this->redirectCustomer();
