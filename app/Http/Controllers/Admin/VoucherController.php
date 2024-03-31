@@ -14,4 +14,10 @@ class VoucherController extends Controller
         $data = VoucherModel::all();
         return view('admin.voucher.index', compact('data','title'));
     }
+    public function add()
+    {
+        $title = 'Thêm voucher';
+        return view('admin.voucher.add');
+    }
+
 }

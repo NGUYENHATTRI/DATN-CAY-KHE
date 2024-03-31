@@ -24,43 +24,54 @@
                     <div class="card-title">
                         Danh sách khách hàng
                     </div>
+                    <div class="card-title">
+                    <a href="{{route('admin.addUser')}}" class="btn btn-primary mb-2 data-table-btn">Thêm khách hàng</a>
+                    </div>
                 </div>
 
                 <div class="card-body">
-                    <table id="responsiveDataTable" class="table table-bordered text-nowrap w-100">
-                        <thead>
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Họ và tên</th>
-                                    <th>Email</th>
-                                    <th>Hình ảnh</th>
-                                    <th>Hành động</th>
-                                </tr>
-                            </thead>
-                        </thead>
-                        <tbody>
-                            @foreach ($data as $row)
-                            <tr>
-                                <td>{{$row->customerID}}</td>
-                                <td>{{ $row->name }}</td>
-                                <td>{{ $row->email }}</td>
-                                <td> <img src="{{ getImage($row->image_url) }}" style="max-width:100px"></td>
-                                <td>
-                                    <div>
-                                        <a href="{{route('admin.editCustomer')}}/{{$row->customerID}}">
-                                            <i class="fa fa-edit me-2 font-success"></i>
-                                        </a>
-                                        <a href="{{route('admin.deleteCustomer')}}/{{$row->customerID}}">
-                                            <i class="fa fa-trash font-danger"></i>
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-                </div>
+
+<table id="responsiveDataTable" class="table table-bordered text-nowrap w-100">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Họ và tên</th>
+            <th>Email</th>
+            <th>Hình ảnh</th>
+            <th>Địa chỉ</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($data as $row)
+            <tr>
+                <td>{{ $row->userID }}</td>
+                <td>{{ $row->name }}</td>
+                <td>{{ $row->email }}</td>
+                <td> <img src="{{ getImage($row->image_url) }}" style="max-width:100px"></td>
+                <td>{{ $row->address }}</td>
+
+                <td>
+                    <div>
+                        <a href="{{ route('admin.editUser') }}/{{ $row->userID }}">
+                            <i class="fa fa-edit me-2 font-success"></i>
+                        </a>
+                        <a href="{{ route('admin.deleteUser') }}/{{ $row->userID }}">
+                            <i class="fa fa-trash font-danger"></i>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        @endforeach
+    </tbody>
+@if(session('success'))
+<div class="alert alert-success">{{ session('success') }}</div>
+@endif
+@if(session('success_delete'))
+<div class="alert alert-success">{{ session('success_delete') }}</div>
+@endif
+</table>
+</div>
             </div>
         </div>
     </div>

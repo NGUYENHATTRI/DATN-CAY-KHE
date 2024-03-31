@@ -15,4 +15,12 @@ class OrderDetailModel extends Model
         'quantity',
     ];
     public $timestamps =false;
+    public function product_variation()
+    {
+        return $this->belongsTo(Variant::class,'product_id');
+    }
+    public function product()
+    {
+        return $this->belongsTo(Product::class,'product_id');
+    }
 }
