@@ -9,16 +9,16 @@
 
     <div class="quickview-product-slider swiper">
         <div class="swiper-wrapper">
-            @forelse($galleryImages as $galleryImage)
+            <!-- @forelse($galleryImages as $galleryImage) -->
                 <div class="swiper-slide text-center">
                     <img src="{{ asset($galleryImage) }}" alt="{{ $product->name }}"
                         loading="lazy" class="img-fluid">
                 </div>
-            @empty
+            <!-- @empty -->
                 <div class="swiper-slide text-center">
                     <img src="{{  asset('images/shop/' . $variants[0]->image_url )  }}" loading="lazy" alt="No Image" class="img-fluid" id="productImage">
                 </div>
-            @endforelse
+            <!-- @endforelse -->
         </div>
     </div>
 
