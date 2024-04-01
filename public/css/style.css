@@ -771,7 +771,7 @@ textarea {
     
     /* start css user */
     .user_left{
-      background-color: rgb(193, 193, 193);
+      background-color: white;
       height: 500px;
       padding: 15px;
     }
@@ -798,16 +798,25 @@ textarea {
     }
     
     .user_profile_group{
-      padding-top: 30px;
+      border-top: 1px solid black;
+      padding-top: 15px;
     }
     
+    .user_list {
+      padding: 0px;
+    }
+
     .user_profile_item{
       font-size: 17px;
       text-decoration: none;
     }
+
+    .user_profile_item i {
+      margin-right: 10px;
+    }
     
     .user_right{
-      background-color: rgb(193, 193, 193);
+      background-color: white;
       height: 500px;
       width: 830px;
       padding: 15px;
@@ -823,7 +832,13 @@ textarea {
     }
     
     .user_profile_infomation{
-      padding: 0px;
+      padding-left: 5px;
+    }
+
+    .list_item {
+      padding-left: 15px;
+      padding-right: 15px;
+      margin-bottom: 15px;
     }
     
     .form_input{

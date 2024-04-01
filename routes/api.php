@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Admin\HomeController as HomeAdminController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -25,3 +26,8 @@ Route::post('/create/comment', [CommentController::class , 'store']);
 
 Route::get('/category/{categoryID}', [ProductController::class , 'getProductInCategory']);
 Route::get('/search/{productName}', [ProductController::class , 'getProductByName']);
+Route::get('/variant/{variantID}/{materialID}/{sizeID}', [ProductController::class , 'getVariant']);
+
+Route::get('/admin/dates', [HomeAdminController::class, 'dates'])->name('dates');
+Route::get('/admin/filter_date', [HomeAdminController::class, 'filter_date'])->name('filter_date');
+Route::get('/admin/chart30day', [HomeAdminController::class, 'chart30day'])->name('chart30day');

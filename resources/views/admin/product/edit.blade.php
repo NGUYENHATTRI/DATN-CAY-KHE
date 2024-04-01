@@ -9,13 +9,14 @@
     <link rel="stylesheet" href="{{ asset('assets/admin/libs/dropzone/dropzone.css') }}"> -->
 @endsection
 @section('content')
+<x-notify::notify />
     <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
         <div class="my-auto">
-            <h5 class="page-title fs-21 mb-1">Thêm sản phẩm</h5>
+            <h5 class="page-title fs-21 mb-1">Sửa sản phẩm</h5>
             <nav>
                 <ol class="breadcrumb mb-0">
                     <li class="breadcrumb-item"><a href="javascript:void(0);">Sản phẩm</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Thêm sản phẩm</li>
+                    <li class="breadcrumb-item active" aria-current="page">Cập nhật sản phẩm</li>
                 </ol>
             </nav>
         </div>
@@ -31,29 +32,37 @@
                                 <input type="text" value="{{ $product->productID }}" name="productID" hidden>
                                     <div class="form-group mb-3">
                                         <label class="form-label text-dark">Tên sản phẩm</label>
-                                        <input type="text" class="form-control" value="{{ $product->name }}" name='name'>
+                                        <input type="text" class="form-control @error('name') is-invalid @enderror" value="{{ $product->name }}" name='name' required>
                                     </div>
+                                    @error('name')
+                                    <div class="text-danger" style="position: relative; top: -10px;">{{ $message }}</div>
+                                    @enderror
                                     <div class="form-group mb-3">
                                         <label class="form-label text-dark">Danh mục</label>
-                                        <select class="form-control" id="language" name="categoryID">
+                                        <select class="form-control @error('categoryID') is-invalid @enderror" id="language" name="categoryID">
                                             <option value="{{ $category_id->catergoryID }}" selected>{{ $category_id->name }}</option>
                                         @foreach($categorys as $category)
                                             <option value="{{ $category->catergoryID }}">{{ $category->name }}</option>
                                         @endforeach   
                                         </select>
                                     </div>
+                                    @error('categoryID')
+                                        <div class="text-danger" style="position: relative; top: -10px;">{{ $message }}</div>
+                                    @enderror
                                     <div class="form-group">
                                         <label class="form-label text-dark">Mô tả</label>
-                                        <input type="text" class="form-control" value="{{ $product->description }}" name="description">
+                                        <input type="text" class="form-control @error('description') is-invalid @enderror" value="{{ $product->description }}" name="description" required>
                                     </div>
-                                    
+                                    @error('description')
+                                        <div class="text-danger" style="position: relative; top: -10px;">{{ $message }}</div>
+                                    @enderror
                                     <label class="form-label">Hình ảnh</label>
                                     <div class="p-4 border rounded-6 mb-4 form-group">
                                         <div>
-                                            <input class="form-control" type="file" id="formFile" name="image">
+                                            <input class="form-control" type="file" id="formFile" name="thumnail">
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Thêm mới</button>
+                                    <button type="submit" class="btn btn-primary">Cập nhật</button>
                                 </form>
 							</div>
 						</div>

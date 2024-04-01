@@ -10,19 +10,37 @@ Thông tin người dùng
 
 					<!-- Start Column 1 -->
 					<div class="col">
-						<div class="user_left">
-							<div class="row">
-								<div class="col-4">
+						<div class="user_left rounded">
+							<div class="d-flex flex-column justify-content-center align-items-center">
+								<div>
 									<img src="{{ asset('storage/' . Auth::user()->image_url) }}" class="avatar_left"></img>
 								</div>
-								<div class="col-8">
+								<div>
 									<p class="user_profile_name">{{ Auth::user()->name}} <br> <label class="user_profile_name_label">Sửa hồ sơ</label> </p>
 								</div>
 							</div>
 							
 							<div class="user_profile_group">
-								<a class="user_profile_item" href="">Tài khoản của tôi </a> <br>
-								<a class="user_profile_item" href="">Đơn hàng</a>
+								<ul class="user_list"> 
+									<li class="list_item">
+										<a class="user_profile_item" href="">
+											<i class="fa-solid fa-user"></i>
+											Tài khoản của tôi
+										</a>
+									</li>
+									<li class="list_item">
+										<a class="user_profile_item" href="">
+											<i class="fa-solid fa-cart-shopping"></i>
+											Lịch sử đơn hàng
+										</a>
+									</li>
+									<li class="list_item">
+										<a class="user_profile_item" href="">
+											<i class="fa-solid fa-cart-shopping"></i>
+											Giỏ hàng của tôi
+										</a>
+									</li>
+								</ul>
 							</div>
 						</div>
 							
@@ -32,71 +50,30 @@ Thông tin người dùng
 
 					<!-- Start Column 2 -->
 					<div class="col">
-						<div class="user_right">
+						<div class="user_right rounded">
 							<form action="/change-info" method="POST" enctype="multipart/form-data">
 								@csrf
 								<div class="row">
 									<div class="col-8">
 										<h3 class="user_profile_h3">Hồ Sơ Của Tôi</h3>
-										<h5 class="user_profile_h5">Quản lý thông tin hồ sơ để bảo mật tài khoản</h5>
-
-										<div class="user_profile_infomation col-12 row">
-
-											<div class="form_infomation_left col-4">
-												<p class="user_profile_name_label">Tên</p>
-												<p class="user_profile_name_label">Email</p>
-												<p class="user_profile_name_label">Địa chỉ</p>
-												<!-- <p class="user_profile_name_label">Giới tính</p>
-												<p class="user_profile_name_label">Ngày sinh</p> -->
+										<!-- <h5 class="user_profile_h5">Quản lý thông tin hồ sơ để bảo mật tài khoản</h5> -->
+											<div class="form-group">
+												<label for="exampleInputName">Tên</label>
+												<input type="text" class="form-control" id="exampleInputName" aria-describedby="emailHelp" placeholder="Nhập tên" value=" {{ Auth::user()->name }}">
 											</div>
-
-											<div class="form_infomation_right col-8">
-													<input type="text" name="name" class="form_input" value="{{ Auth::user()->name}}">
-													@error('name')
-														<div class="badge alert-danger">{{ $message }}</div>
-													@enderror
-
-													<input type="text" name="email" class="form_input" value="{{ Auth::user()->email}}">
-													@error('email')
-														<div class="badge alert-danger">{{ $message }}</div>
-													@enderror
-
-													<input type="text" name="address" class="form_input" value="113">
-													@error('address')
-														<div class="badge alert-danger">{{ $message }}</div>
-													@enderror
-													<!-- <p style="padding-top: 10px;" class="user_profile_name_label">Account@gmail.com <label> <a style="color: blue; padding-left: 5px;" href="">Thay đổi</a></label></p>
-													<p class="user_profile_name_label">090909*** <label> <a style="color: blue; padding-left: 5px;" href="">Thay đổi</a></label></p>
-													<button style="border: none; background-color: rgb(193, 193, 193);" class="user_profile_name_label btn-sex">Nam</button>
-													<button style="border: none; background-color: rgb(193, 193, 193);" class="user_profile_name_label btn-sex">Nữ</button>
-													<button style="border: none; background-color: rgb(193, 193, 193);" class="user_profile_name_label btn-sex">Khác</button>
-													<div class="select_information">
-														<select class="form_select">
-															<option selected>1</option>
-															<option value="1">One</option>
-															<option value="2">Two</option>
-															<option value="3">Three</option>
-														</select>
-														<select class="form_select">
-															<option selected>1</option>
-															<option value="1">One</option>
-															<option value="2">Two</option>
-															<option value="3">Three</option>
-														</select>
-														<select class="form_select">
-															<option selected>1</option>
-															<option value="1">One</option>
-															<option value="2">Two</option>
-															<option value="3">Three</option>
-														</select>
-													</div> -->
-													<button class="btn_submit" type="submit">Lưu</button>
+											<div class="form-group">
+												<label for="exampleInputEmail1">Email</label>
+												<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nhập email" value="{{ Auth::user()->email }}">
 											</div>
-											
-										</div>
+											<div class="form-group mt-4">
+												<button type="submit" class="btn btn-primary rounded">Cập nhật</button>
+												<a href="/logout" class="btn btn-primary rounded">
+													Đăng xuất
+												</a>
+											</div>
 									</div>
-									<div class="col-4 user_profile_right">
-										<img src="{{ asset('storage/' . Auth::user()->image_url) }}" class="avatar_right"></img>
+									<div class="col-4 user_profile_right text-center d-flex flex-column justify-content-center align-items-center">
+										<div class="d-flex justify-content-center"><img src="{{ asset('storage/' . Auth::user()->image_url) }}" class="avatar_right text-center"></img></div>
 										<input type="file" name="file_image" id="file-input">
 										<label id="file-input-label" for="file-input">Chọn ảnh</label>
 										<p style="font-size: 10px; color: black;">Dung lượng file tối đa 1MB <label for="">Định dạng:.. JPG, PNG</label> </p>
@@ -104,7 +81,6 @@ Thông tin người dùng
 								</div>
 							</form>
 						</div>
-						<a href="/logout">Đăng xuất</a>
 					</div> 
 					<!-- End Column 2 -->
 

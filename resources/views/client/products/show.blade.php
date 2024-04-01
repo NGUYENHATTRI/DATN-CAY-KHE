@@ -51,23 +51,57 @@
         let variantID = $('.variant').find('input[type="radio"]:checked').val();
         let materialID = $('.material').find('input[type="radio"]:checked').val();
         let sizeID = $('.size').find('input[type="radio"]:checked').val();
-        function getSize(e){
-            let ele = $(e);
-            sizeID = ele.val();
+
+
+function formatPrice(price) {
+    return '$' + price.toFixed(2);
+}
+
+$(document).ready(function() {
+
+    variantID = $('.variant').find('input[type="radio"]:checked').val();
+    materialID = $('.material').find('input[type="radio"]:checked').val();
+    sizeID = $('.size').find('input[type="radio"]:checked').val()
+    console.log("variantID: " + variantID);
+    console.log("materialID: " + materialID);
+    console.log("sizeID: " + sizeID);
+    $.ajax({
+        url: "/api/variant/" + variantID + "/" + materialID + "/" + sizeID,
+        type: "GET",
+        success: function(response) {
+            $('.infor__price').text(response.variant.price);
+            $('#stock_quantity').text(response.variant.stock_quantity);
+            $('#productImage').attr('src', 'http://127.0.0.1:8000/images/shop/' + response.variantImages[0].image_url);
+        },
+        error: function(xhr, status, error) {
+            console.error(error);
         }
+    });
 
-        function getMaterial(e){
-            let ele = $(e);
-            materialID = ele.val();
-        }
+    $('input[type="radio"]').on('change', function() {
+        variantID = $('.variant').find('input[type="radio"]:checked').val();
+        materialID = $('.material').find('input[type="radio"]:checked').val();
+        sizeID = $('.size').find('input[type="radio"]:checked').val();
 
-        function getVariant(e){
-            let ele = $(e);
-            variantID = ele.val();
-        }
-
-        $(document).ready(function() {
-
+        console.log("variantID: " + variantID);
+        console.log("materialID: " + materialID);
+        console.log("sizeID: " + sizeID);
+        
+        $.ajax({
+            url: "/api/variant/" + variantID + "/" + materialID + "/" + sizeID,
+            type: "GET",
+            success: function(response) {
+                var formattedPrice = formatPrice(response.variant.price);
+                $('.infor__price').text(formattedPrice);
+                $('#stock_quantity').text(response.variant.stock_quantity);
+                $('#productImage').attr('src', 'http://127.0.0.1:8000/images/shop/' + response.variantImages[0].image_url);
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
         });
+    });
+});
+
     </script>
 @endsection
