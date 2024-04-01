@@ -34,22 +34,13 @@
                     @csrf
                                 <div class="mb-3">
                                     <label for="form-password" class="form-label fs-14 text-dark">Nhập tên danh mục</label>
-                                    <input type="text" required class="form-control" name="name" placeholder="">
+                                    <input type="category" required class="form-control @error('name') is-invalid @enderror" name="name" placeholder="">
                                 </div>
+                                @error('name')
+                                    <div class="text-danger" style="position: relative; top: -10px;">{{ $message }}</div>
+                                @enderror
                             <button class="btn btn-primary mb-3" type="submit">Thêm</button>
-                        <!-- @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif -->
                     </form>
-        @if(session('error'))
-            <div class="alert alert-danger">{{ session('error') }}</div>
-        @endif
                 </div>
             </div>
         </div>

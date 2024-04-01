@@ -11,66 +11,84 @@ class CategoryController extends Controller{
 //-------------------------------------------------------------------------------------------------------- 
     public function index()
     {
-        $title = 'Danh mục sản phẩm';
+        $title = 'Danh mục';
         $data = Category::all();
         return view('admin.category.index', compact('data','title'));
     }
 //-------------------------------------------------------------------------------------------------------- 
     public function view_add(){
-        return view('admin.category.add');
+        $title = 'Thêm danh mục mới';
+        return view('admin.category.add', compact('title'));
     }
 
     public function add(Request $request){
-        // Kiểm tra dữ liệu
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|unique:catergory,name',
-        ]);
+        $request->validate([
+            'name' => 'required|max:100|unique:catergory,name,' . $request->catergoryID . ',catergoryID',
 
-        // Nếu dữ liệu không hợp lệ
-        if ($validator->fails()) {
-            // Trả về thông báo lỗi
-            return redirect()->route('admin.addCategory')->with('error', 'Tên danh mục bị trùng lặp.');
-        }
+        ], [
+            'name.required' => 'Tên danh mục không được bỏ trống',
+            'name.max' => 'Tên danh mục không được vượt quá 100 ký tự',
+            'name.unique' => 'Tên danh mục đã tồn tại',
+        ]);
 
         // Tạo mới danh mục
         Category::create([
             'name' => $request->name,
         ]);
 
-        // Chuyển hướng với thông báo thành công
-        return redirect()->route('admin.category')->with('success', 'Danh mục đã được thêm thành công.');
+        notify()->success('Tạo danh mục thành công', 'Tạo thành công');
+        return redirect()->route('admin.category');
     }
 
 //-------------------------------------------------------------------------------------------------------- 
-    public function view_edit($id){
-        $category = Category::find($id);
-        return view('admin.category.edit', compact('category'));
+    public function view_edit($catergoryID){
+        $title = 'Chỉnh sửa danh mục';
+        $category = Category::find($catergoryID);
+        return view('admin.category.edit', compact('title','category'));
     }
 
-    public function edit(Request $request, $id){
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|unique:catergory,name,' .$id,
-        ]);
-        // $request->validate([
-        //     'id' => 'required|numeric|unique:catergory,id,' .$id,
-        //     'name' => 'required|unique:catergory,name,' .$id,
-        // ]);
-        if($validator->fails()){
-            return redirect()->route('admin.editCategory', ['id' => $id])->with('error', 'ID hoặc tên danh mục bị trùng lặp');
-        }
+    public function edit(Request $request){
+        $request->validate([
+            'name' => 'required|max:100|unique:catergory,name,' . $request->catergoryID . ',catergoryID',
 
-        $category = Category::find($id);
-        $category->update([
+        ], [
+            'name.required' => 'Tên danh mục không được bỏ trống',
+            'name.max' => 'Tên danh mục không được vượt quá 100 ký tự',
+            'name.unique' => 'Tên danh mục đã tồn tại',
+        ]);
+
+        Category::where('catergoryID', $request->catergoryID)->update([
             'name' => $request->name,
         ]);
-    
-        return redirect()->route('admin.category', ['id' => $id])->with('success', 'Danh mục đã được sửa thành công.');
+
+        notify()->success('Cập nhật danh mục thành công', 'Cập nhật thành công');
+        return redirect()->route('admin.category');
 }
 //-------------------------------------------------------------------------------------------------------- 
-    public function delete($id){
-        $delete = Category::find($id);
+    public function delete($catergoryID){
+        $delete = Category::find($catergoryID);
         $delete->delete();
-        return redirect()->route('admin.category')->with('success_delete', 'Danh mục đã được xóa thành công!');
+        return redirect()->route('admin.category');
+    }
+//-------------------------------------------------------------------------------------------------------- 
+    public function showTrash()
+    {
+        $title = 'Thùng rác danh mục';
+        $data = Category::onlyTrashed()->get();
+        return view('admin.category.trash', compact('data','title'));
+    }
+//-------------------------------------------------------------------------------------------------------- 
+    public function restore($CatergoryID)
+    {
+        Category::withTrashed()->find($CatergoryID)->restore();
+        notify()->success('Khôi phục danh mục thành công', 'Khôi phục thành công');
+        return redirect()->back();
+    }
+//-------------------------------------------------------------------------------------------------------- 
+    public function forceDelete($CatergoryID)
+    {
+        Category::withTrashed()->find($CatergoryID)->forceDelete();
+        return redirect()->back();
     }
 
 }

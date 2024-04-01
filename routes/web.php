@@ -154,8 +154,11 @@ Route::middleware('checkadmin')->group(function () {
                     Route::get('view_add', [AdminUserController::class, 'view_add'])->name('addUser');
                     Route::post('add', [AdminUserController::class, 'add'])->name('postAddUser');
                     Route::get('view_edit/{id?}', [AdminUserController::class, 'view_edit'])->name('editUser')->where(['id' => '[0-9]+']);
-                    Route::put('edit/{id}', [AdminUserController::class, 'edit'])->name('postEditUser');
+                    Route::post('edit', [AdminUserController::class, 'edit'])->name('postEditUser');
                     Route::get('delete/{id?}', [AdminUserController::class, 'delete'])->name('deleteUser')->where(['id' => '[0-9]+']);
+                    Route::get('trash', [AdminUserController::class, 'showTrash'])->name('trashUser');
+                    Route::get('restore/{id?}', [AdminUserController::class, 'restore'])->name('restoreUser');
+                    Route::get('forceDelete/{id?}', [AdminUserController::class, 'forceDelete'])->name('forceDeleteUser');
                 }
             );
             Route::prefix('order')->group(
@@ -215,9 +218,12 @@ Route::middleware('checkadmin')->group(function () {
                     Route::get('/', [CategoryAdminController::class, 'index'])->name('category');
                     Route::get('view_add', [CategoryAdminController::class, 'view_add'])->name('addCategory');
                     Route::post('add', [CategoryAdminController::class, 'add'])->name('postAddCategory');
-                    Route::get('view_edit/{id}', [CategoryAdminController::class, 'view_edit'])->name('editCategory')->where(['id' => '[0-9]+']);
-                    Route::put('edit/{id}', [CategoryAdminController::class, 'edit'])->name('postEditCategory');
+                    Route::get('view_edit/{id?}', [CategoryAdminController::class, 'view_edit'])->name('editCategory')->where(['id' => '[0-9]+']);
+                    Route::post('edit', [CategoryAdminController::class, 'edit'])->name('postEditCategory');
                     Route::get('delete/{id?}', [CategoryAdminController::class, 'delete'])->name('deleteCategory')->where(['id' => '[0-9]+']);
+                    Route::get('trash', [CategoryAdminController::class, 'showTrash'])->name('trashCategory');
+                    Route::get('restore/{id?}', [CategoryAdminController::class, 'restore'])->name('restoreCategory');
+                    Route::get('forceDelete/{id?}', [CategoryAdminController::class, 'forceDelete'])->name('forceDeleteCategory');
                 }
             );
         }

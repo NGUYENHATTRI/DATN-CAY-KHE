@@ -32,45 +32,51 @@
                 <div class="card-body">
                     <form class="card-body" action="{{ route('admin.postAddUser') }}" method="POST">
                     @csrf
-                                <div class="mb-3">
-                                    <label for="form-text" class="form-label fs-14 text-dark">Nhập họ tên</label>
-                                    <input type="username" required class="form-control" name="name" placeholder="">
+                                <div>
+                                    <label for="form-text" class="form-label fs-14 text-dark">Nhập tên</label>
+                                    <input type="username" required class="form-control @error('name') is-invalid @enderror" name="name" placeholder="">
                                 </div>
+                                @error('name')
+                                    <div class="text-danger" style="position: relative; top: -10px;">{{ $message }}</div>
+                                @enderror
                                 <div class="mb-3">
                                     <label for="form-text" class="form-label fs-14 text-dark">Nhập email</label>
-                                    <input type="email" required class="form-control" name="email" placeholder="">
+                                    <input type="email" required class="form-control @error('email') is-invalid @enderror" name="email" placeholder="">
                                 </div>
+                                @error('email')
+                                    <div class="text-danger" style="position: relative; top: -10px;">{{ $message }}</div>
+                                @enderror
                                 <div class="mb-3">
                                     <label for="form-text" class="form-label fs-14 text-dark">Nhập mật khẩu</label>
-                                    <input type="password" required class="form-control" name="password" placeholder="">
+                                    <input type="password" required class="form-control @error('password') is-invalid @enderror" name="password" placeholder="">
                                 </div>
+                                @error('password')
+                                    <div class="text-danger" style="position: relative; top: -10px;">{{ $message }}</div>
+                                @enderror
                                 <div class="mb-3">
                                     <label for="form-text" class="form-label fs-14 text-dark">Nhập hình ảnh</label>
-                                    <input type="file" required class="form-control" name="image_url" placeholder="">
+                                    <input type="file" required class="form-control @error('image_url') is-invalid @enderror" name="image_url" placeholder="">
                                 </div>
+                                @error('image_url')
+                                    <div class="text-danger" style="position: relative; top: -10px;">{{ $message }}</div>
+                                @enderror
                                 <div class="mb-3">
                                     <label for="form-text" class="form-label fs-14 text-dark">Nhập địa chỉ</label>
-                                    <input type="address" required class="form-control" name="address" placeholder="">
+                                    <input type="address" required class="form-control @error('address') is-invalid @enderror" name="address" placeholder="">
                                 </div>
-                                <div class="mb-3">
+                                @error('address')
+                                    <div class="text-danger" style="position: relative; top: -10px;">{{ $message }}</div>
+                                @enderror
+                                <!-- <div class="mb-3">
                                     <label for="form-text" class="form-label fs-14 text-dark">Nhập Google ID</label>
-                                    <input type="text" required class="form-control" name="google_id" placeholder="">
+                                    <input type="text" required class="form-control @error('google_id') is-invalid @enderror" name="google_id" placeholder="">
                                 </div>
+                                @error('google_id')
+                                    <div class="text-danger" style="position: relative; top: -10px;">{{ $message }}</div>
+                                @enderror -->
                                 
                             <button class="btn btn-primary mb-3" type="submit">Thêm</button>
-                        <!-- @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif -->
                     </form>
-        @if(session('error'))
-            <div class="alert alert-danger">{{ session('error') }}</div>
-        @endif
                 </div>
             </div>
         </div>

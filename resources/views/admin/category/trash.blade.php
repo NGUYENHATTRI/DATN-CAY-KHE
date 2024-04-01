@@ -7,11 +7,12 @@
 @section('content')
     <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
         <div class="my-auto">
-            <h5 class="page-title fs-21 mb-1">Danh mục</h5>
+            <h5 class="page-title fs-21 mb-1">Danh sách danh mục</h5>
             <nav>
                 <ol class="breadcrumb mb-0">
-                    <li class="breadcrumb-item"><a href="javascript:void(0);">Sản phẩm</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Danh mục sản phẩm</li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin.user')}}">Danh mục</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Danh sách danh mục</li>
+                    <li class="breadcrumb-item active" aria-current="page">Thùng rác</li>
                 </ol>
             </nav>
         </div>
@@ -20,28 +21,40 @@
         <div class="col-xl-12">
             <div class="card custom-card">
 
-                <div class="card-header justify-content-between">
+                <div class="card-header">
                     <div class="card-title">
-                        Sửa danh mục sản phẩm
-                    </div>
-                    <div class="prism-toggle">
-                        <a href="{{route('admin.category')}}" class="btn btn-sm btn-primary-light">Trở về</a>
+                        Danh sách danh mục
                     </div>
                 </div>
+
                 <div class="card-body">
-                    <form class="card-body" method="post" action="{{ route('admin.postEditCategory') }}">
-                        @csrf 
-                        <input type="text" name="catergoryID" value="{{ $category->catergoryID }}" hidden>
-                                <div class="mb-3">
-                                    <label for="form-password" class="form-label fs-14 text-dark">Nhập tên danh mục</label>
-                                    <input type="username" required class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $category->name }}">
-                                </div>
-                                @error('name')
-                                    <div class="text-danger" style="position: relative; top: -10px;">{{ $message }}</div>
-                                @enderror
-                            <button class="btn btn-primary mb-3" type="submit">Sửa</button>
-                            
-                    </form>
+                    <table id="responsiveDataTable" class="table table-bordered text-nowrap w-100">
+                        <thead>
+                            <tr>
+                            <th>ID</th>
+                            <th>Tên danh mục</th>
+                            <th>Hành độngss</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($data as $row)
+                                <tr>
+                                    <td>{{ $row->catergoryID }}</td>
+                                    <td>{{ $row->name }}</td>
+                                    <td>
+                                        <div>
+                                            <a href="{{ route('admin.restoreCategory') }}/{{ $row->catergoryID }}">
+                                                <i class="fa-solid fa-window-restore"></i>
+                                            </a>
+                                            <a href="{{ route('admin.forceDeleteCategory') }}/{{ $row->catergoryID }}">
+                                                <i class="fa fa-trash font-danger"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

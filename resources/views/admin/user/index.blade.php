@@ -23,10 +23,7 @@
                 <div class="card-header">
                     <div class="card-title">
                         Danh sách khách hàng
-                    </div>
-                    <div class="card-title">
-                    <a href="{{route('admin.addUser')}}" class="btn btn-primary mb-2 data-table-btn">Thêm khách hàng</a>
-                    </div>
+                    </div> 
                 </div>
 
                 <div class="card-body">
@@ -48,7 +45,8 @@
                 <td>{{ $row->userID }}</td>
                 <td>{{ $row->name }}</td>
                 <td>{{ $row->email }}</td>
-                <td> <img src="{{ getImage($row->image_url) }}" style="max-width:100px"></td>
+                <td> <img src="{{ asset('getImage($row->image_url') }}" style="max-width:100px"></td>
+                
                 <td>{{ $row->address }}</td>
 
                 <td>
@@ -56,7 +54,7 @@
                         <a href="{{ route('admin.editUser') }}/{{ $row->userID }}">
                             <i class="fa fa-edit me-2 font-success"></i>
                         </a>
-                        <a href="{{ route('admin.deleteUser') }}/{{ $row->userID }}">
+                        <a href="{{ route('admin.deleteUser', $row->userID ) }}">
                             <i class="fa fa-trash font-danger"></i>
                         </a>
                     </div>
@@ -64,13 +62,9 @@
             </tr>
         @endforeach
     </tbody>
-@if(session('success'))
-<div class="alert alert-success">{{ session('success') }}</div>
-@endif
-@if(session('success_delete'))
-<div class="alert alert-success">{{ session('success_delete') }}</div>
-@endif
 </table>
+<a href="{{route('admin.addUser')}}"><button class="btn btn-primary">Thêm nhân viên</button></a> | 
+<a style="color:darkred" href="{{ route('admin.trashUser')}}">Thùng rác <i class="fa fa-trash font-danger"></i></a>
 </div>
             </div>
         </div>

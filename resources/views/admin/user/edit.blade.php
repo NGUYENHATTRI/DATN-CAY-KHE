@@ -30,48 +30,54 @@
                 </div>
 
                 <div class="card-body">
-                    <form class="card-body" action="{{ route('admin.postEditUser', $user->userID) }}" method="POST">
+                    <form class="card-body" action="{{ route('admin.postEditUser')}}" method="POST">
                     @csrf
-                    @method('PUT')
+                        <input type="text" name="userID" value="{{ $user->userID }}" hidden>
                                 <div class="mb-3">
                                     <label for="form-password" class="form-label fs-14 text-dark">Nhập họ tên</label>
-                                    <input type="username" required class="form-control" name="name" placeholder="{{$user->name}}">
+                                    <input type="username" required class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $user->name }}">
                                 </div>
+                                @error('name')
+                                    <div class="text-danger" style="position: relative; top: -10px;">{{ $message }}</div>
+                                @enderror
                                 <div class="mb-3">
                                     <label for="form-password" class="form-label fs-14 text-dark">Nhập email</label>
-                                    <input type="email" required class="form-control" name="email" placeholder="{{$user->email}}">
+                                    <input type="email" required class="form-control @error('email') is-invalid @enderror" name="email" placeholder="{{$user->email}}">
                                 </div>
+                                @error('email')
+                                    <div class="text-danger" style="position: relative; top: -10px;">{{ $message }}</div>
+                                @enderror
                                 <div class="mb-3">
                                     <label for="form-text" class="form-label fs-14 text-dark">Nhập mật khẩu</label>
-                                    <input type="password" required class="form-control" name="password" placeholder="{{$user->password}}">
+                                    <input type="password" required class="form-control @error('password') is-invalid @enderror" name="password" placeholder="{{$user->password}}">
                                 </div>
+                                @error('password')
+                                    <div class="text-danger" style="position: relative; top: -10px;">{{ $message }}</div>
+                                @enderror
                                 <div class="mb-3">
                                     <label for="form-password" class="form-label fs-14 text-dark">Nhập hình ảnh</label>
-                                    <input type="file" required class="form-control" name="image_url" placeholder="{{$user->image_url}}">
+                                    <input type="file" required class="form-control @error('image_url') is-invalid @enderror" name="image_url" placeholder="{{$user->image_url}}">
                                 </div>
+                                @error('image_url')
+                                    <div class="text-danger" style="position: relative; top: -10px;">{{ $message }}</div>
+                                @enderror
                                 <div class="mb-3">
                                     <label for="form-password" class="form-label fs-14 text-dark">Nhập địa chỉ</label>
-                                    <input type="address" required class="form-control" name="address" placeholder="{{$user->address}}">
+                                    <input type="address" required class="form-control @error('address') is-invalid @enderror" name="address" placeholder="{{$user->address}}">
                                 </div>
-                                <div class="mb-3">
+                                @error('address')
+                                    <div class="text-danger" style="position: relative; top: -10px;">{{ $message }}</div>
+                                @enderror
+                                <!-- <div class="mb-3">
                                     <label for="form-text" class="form-label fs-14 text-dark">Nhập Google ID</label>
-                                    <input type="text" required class="form-control" name="google_id" placeholder="{{$user->google_id}}">
+                                    <input type="text" required class="form-control @error('google_id') is-invalid @enderror" name="google_id" placeholder="{{$user->google_id}}">
                                 </div>
-                                
+                                @error('google_id')
+                                    <div class="text-danger" style="position: relative; top: -10px;">{{ $message }}</div>
+                                @enderror -->
                             <button class="btn btn-primary mb-3" type="submit">Sửa</button>
-                        <!-- @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif -->
+
                     </form>
-        @if(session('error'))
-            <div class="alert alert-danger">{{ session('error') }}</div>
-        @endif
                 </div>
             </div>
         </div>
