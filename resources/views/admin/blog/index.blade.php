@@ -47,7 +47,7 @@
                                     </td>
                                     <td>{{ Str::limit($row->title, $limit = 30, $end = '...') }}
                                         <td> <img src="{{ getImage($row->thumbnail) }}" style="max-width:100px"></td>
-                                    <td>{!! Helper::getNameByID($row->admin_id,'customer') !!}</td>
+                                    <td>{{ $row->name_admin }}</td>
                                     <td>
                                         <div>
                                             <a href="{{ route('admin.editBlog') }}/{{ $row->postID }}">

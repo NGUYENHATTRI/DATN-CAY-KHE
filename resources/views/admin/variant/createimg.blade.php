@@ -7,11 +7,11 @@
 @section('content')
     <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
         <div class="my-auto">
-            <h5 class="page-title fs-21 mb-1">{{ $title }}</h5>
+            <h5 class="page-title fs-21 mb-1">Thêm hình biến thể</h5>
             <nav>
                 <ol class="breadcrumb mb-0">
-                    <li class="breadcrumb-item"><a href="javascript:void(0);">Bài viết</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Thêm Bài viết</li>
+                    <li class="breadcrumb-item"><a href="javascript:void(0);">Biến thể</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Thêm hình ảnh biến thể</li>
                 </ol>
             </nav>
         </div>
@@ -22,43 +22,32 @@
 
                 <div class="card-header">
                     <div class="card-title">
-                        Bài viết
+                        Biến thể
                     </div>
                 </div>
 
+
                 <div class="card-body">
-                    <form action="{{ route('admin.postAddBlog') }}" method="POST">
+                    <form action="{{ route('admin.postAddimgVariant') }}"  method="POST">
                         @csrf
+                        @foreach($imgvariants as $variant)
+                        <input type="text" value="{{ $variant->variant_id }}" name="variantID" hidden>
+                        @endforeach
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Tiêu đề bài viết</label>
-                            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Tiêu đề bài viết" name="title">
-                            @error('title')
-                            <div class="text-danger">{{ $message }}</div>
-                            @enderror
+                            <label for="exampleInputPassword1">Sản phẩm</label>
+                            @foreach($proid as $pron)
+                            <input type="text" class="form-control" id="exampleInputPassword1" value="{{$pron->name}}" name="proname" disabled>
+                            @endforeach
                         </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Hình ảnh bài viết</label>
-                            <div class="p-4 border rounded-6 mb-4 form-group">
-                                <div>
-                                    <input class="form-control" type="file" id="formFile" name="thumnail">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Người đăng</label>
-                            <select class="form-select" name="admin_id" id="">
-                                @foreach($admins as $admin)
-                                    <option value="{{ $admin->userID }}">{{ $admin->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Nội dung</label>
-                            <textarea class="form-control" name="content"> </textarea>
-                            @error('content')
-                            <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
+                        <label class="form-label">Hình ảnh</label>
+                                    <div class="p-4 border rounded-6 mb-4 form-group">
+                                        <div>
+                                            <input class="form-control" type="file" id="formFile" name="image">
+                                        </div>
+                                    </div>
+                       
+
+
 
                         <button type="submit" class="btn btn-primary">Thêm mới</button>
                     </form>

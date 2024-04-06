@@ -63,6 +63,15 @@
                                             <a href="{{ route('admin.deleteVariant') }}/{{ $row->variantID }}">
                                                 <i class="fa fa-trash font-danger"></i>
                                             </a>
+                                            <a href="{{ route('admin.addimgVariant') }}/{{ $row->variantID }}">
+                                            <i class="fa-solid fa-image"></i>
+                                            </a>
+                                            <a href="{{ route('admin.editimgVariant') }}/{{ $row->variantID }}">
+                                            <i class="fa-solid fa-image"></i>
+                                            </a>
+                                            <a href="{{ route('admin.deleteimgVariant') }}/{{ $row->variantID }}">
+                                            <i class="fa-regular fa-images"></i>
+                                            </a>
                                         </div>
                                     </td>
                                 </tr>

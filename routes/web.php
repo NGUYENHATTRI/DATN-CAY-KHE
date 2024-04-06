@@ -149,6 +149,14 @@ Route::middleware('checkadmin')->group(function () {
                     Route::get('edit/{id?}', [VariantAdminController::class, 'edit'])->name('editVariant')->where(['id' => '[0-9]+']);
                     Route::post('edit', [VariantAdminController::class, 'edit_'])->name('postEditVariant');
                     Route::get('delete/{id?}', [VariantAdminController::class, 'delete'])->name('deleteVariant')->where(['id' => '[0-9]+']);
+                    
+                    
+                    Route::get('addimg/{id?}', [VariantAdminController::class, 'createimg'])->name('addimgVariant');
+                    Route::post('addimg', [VariantAdminController::class, 'createimg_'])->name('postAddimgVariant');
+                    Route::get('editimg/{id?}', [VariantAdminController::class, 'editimg'])->name('editimgVariant')->where(['id' => '[0-9]+']);
+                    Route::post('editimg', [VariantAdminController::class, 'editimg_'])->name('postEditimgVariant');
+                    Route::get('deleteimg/{id?}', [VariantAdminController::class, 'deleteimg'])->name('deleteimgVariant')->where(['id' => '[0-9]+']);
+
                 }
             );
             Route::prefix('user')->group(

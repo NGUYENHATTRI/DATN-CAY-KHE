@@ -7,11 +7,11 @@
 @section('content')
     <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
         <div class="my-auto">
-            <h5 class="page-title fs-21 mb-1">{{ $title }}</h5>
+            <h5 class="page-title fs-21 mb-1">Chỉnh sửa hình biến thể</h5>
             <nav>
                 <ol class="breadcrumb mb-0">
-                    <li class="breadcrumb-item"><a href="javascript:void(0);">Bài viết</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Thêm Bài viết</li>
+                    <li class="breadcrumb-item"><a href="javascript:void(0);">Biến thể</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Chỉnh sửa hình ảnh biến thể</li>
                 </ol>
             </nav>
         </div>
@@ -22,45 +22,39 @@
 
                 <div class="card-header">
                     <div class="card-title">
-                        Bài viết
+                        Biến thể
                     </div>
                 </div>
 
                 <div class="card-body">
-                    <form action="{{ route('admin.postAddBlog') }}" method="POST">
+                <form action="{{ route('admin.postEditimgVariant') }}"  method="POST">
                         @csrf
+                        
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Tiêu đề bài viết</label>
-                            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Tiêu đề bài viết" name="title">
-                            @error('title')
-                            <div class="text-danger">{{ $message }}</div>
-                            @enderror
+                            <label for="exampleInputPassword1">Sản phẩm</label>
+                            @foreach($proid as $pron)
+                            <input type="text" class="form-control" id="exampleInputPassword1" value="{{$pron->name}}" name="proname" disabled>
+                            @endforeach
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Hình ảnh bài viết</label>
-                            <div class="p-4 border rounded-6 mb-4 form-group">
-                                <div>
-                                    <input class="form-control" type="file" id="formFile" name="thumnail">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Người đăng</label>
-                            <select class="form-select" name="admin_id" id="">
-                                @foreach($admins as $admin)
-                                    <option value="{{ $admin->userID }}">{{ $admin->name }}</option>
+                            <label for="exampleInputEmail1">Hình ảnh</label>
+                            <select class="form-select" name="imageID" id="">
+                            @foreach($imgvariants as $variant)
+                                    <option value="{{ $variant->imageID }}">{{ $variant->image_url }}</option>
                                 @endforeach
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Nội dung</label>
-                            <textarea class="form-control" name="content"> </textarea>
-                            @error('content')
-                            <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
+                      
+                        <label class="form-label">Hình ảnh</label>
+                                    <div class="p-4 border rounded-6 mb-4 form-group">
+                                        <div>
+                                            <input class="form-control" type="file" id="formFile" name="image">
+                                        </div>
+                                    </div>
 
-                        <button type="submit" class="btn btn-primary">Thêm mới</button>
+
+
+                        <button type="submit" class="btn btn-primary">Cập nhật</button>
                     </form>
                 </div>
             </div>
