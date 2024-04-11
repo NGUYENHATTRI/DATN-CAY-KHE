@@ -12,7 +12,7 @@ class StaffController extends Controller
     public function index()
     {
         $title = 'Danh mục nhân viên';
-        $data = User::where('role' , '!=', 0)->get();
+        $data = User::where('role' , '!=', 0)->where('email', '!=', \Auth::user()->email)->get();
         return view('admin.employee.index', compact('data','title'));
     }
 

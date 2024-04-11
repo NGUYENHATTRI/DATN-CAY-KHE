@@ -58,9 +58,12 @@
                                     </td>
                                     <td>
                                     <div>
-                                            <a href="{{ route('admin.restoreStaff') }}/{{ $row->userID }}">
-                                                <i class="fa-solid fa-window-restore"></i>
-                                            </a>
+                                        <a href="{{ route('admin.restoreStaff') }}/{{ $row->userID }}">
+                                            <i class="fa-solid fa-window-restore"></i>
+                                        </a>
+                                        <a href="{{ route('admin.deleteStaff', $row->userID) }}">
+                                                <i class="fa fa-trash font-danger"></i>
+                                        </a>
                                         </div>
                                     </td>
                                 </tr>

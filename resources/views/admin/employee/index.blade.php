@@ -24,7 +24,6 @@
                 <div class="card-header">
                     <div class="card-title">
                         Danh sách nhân viên
-                        <a href="{{ route('admin.trashStaff')}}">Thùng rác</a>
                     </div>
                 </div>
 
@@ -63,7 +62,7 @@
                                             <a href="{{ route('admin.editStaff', $row->userID) }}">
                                                 <i class="fa fa-edit me-2 font-success"></i>
                                             </a>
-                                            <a href="{{ route('admin.deleteStaff', $row->userID) }}">
+                                            <a href="{{ route('admin.forceDeleteStaff', $row->userID) }}">
                                                 <i class="fa fa-trash font-danger"></i>
                                             </a>
                                         </div>
@@ -74,6 +73,9 @@
                     </table>
                 <a href="{{ route('admin.createStaff') }}">
                     <button class="btn btn-primary">Thêm nhân viên</button>
+                </a>
+                <a href="{{ route('admin.trashStaff')}}">
+                    <button class="btn btn-primary">Thùng rác</button>
                 </a>
                 </div>
             </div>
